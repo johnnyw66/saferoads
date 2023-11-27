@@ -92,9 +92,7 @@ Travelling shortest distance is not always being selfish! It is good for the env
 ```
 import sys
 
-def normalise(value, max_value):
-    return value/(max_value + 0.0000001)
-
+from heapq import heappush, heappop
 
 # WARNING ! THIS IS AN AMMENDED COPY OF SOURCE FROM CHAT GPT
 # When I asked the question 
@@ -102,7 +100,6 @@ def normalise(value, max_value):
 
 # TODO We need to find all possible routes from start to endpt and find the maxium distance and safety values
 
-from heapq import heappush, heappop
 class CombinedCost():
 
     def __init__(self, distance, safety = 0):
