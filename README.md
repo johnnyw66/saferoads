@@ -24,7 +24,7 @@ class CombinedCost:
       self.safety = safety
 
 
-# Define our new graph to 
+# Rather than two seperate costing graphs - define our new graph to use the CombinedCost class
 
 combined_graph = [
           None, CombinedCost(2,3),   
