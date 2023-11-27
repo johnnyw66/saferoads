@@ -40,7 +40,8 @@ combined_graph = [
 
 Combined cost (considering distance and safety) of travelling between nodes **n1** and **n2** 
 
-cost() = (1 - m) * normalise(combined_graph[].distance, max_distance_from_start_to_end_point)   + m * normalise(combined_graph[].safety, max_safety_from_start_to_end_point)
+cost() = (1 - m) * normalise(combined_graph[].distance, max_distance_from_start_to_end_point)   
+    + m * normalise(combined_graph[].safety, max_safety_from_start_to_end_point)
  
 **m** is a 'float' value between 0 and 1
 
@@ -49,9 +50,13 @@ cost() = (1 - m) * normalise(combined_graph[].distance, max_distance_from_start_
 
 Example of other values -
 
-**m = 0.25
+m = 0.25 means we are giving 3 times more consideration to minimising travelling distance than to safety.
+m = 0.75 means we are 3 times more consideration to safety than minimising distance.
+
+
 
 **max_distance_from_start_to_end_point** is the largest total distance taken from the set of all possible routes from our starting point to end point.
+
 **max_safety_from_start_to_end_point** is the largest total safety value taken from the set of all possible routes from our starting point to end point.
 
 This means we will need a routine to calculate all paths from given start node to our end node.
