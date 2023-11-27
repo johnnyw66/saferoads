@@ -94,7 +94,6 @@ def normalise(value, max_value):
 
 
 # WARNING ! THIS IS AN AMMENDED COPY OF SOURCE FROM CHAT GPT
-# (dijkstra(graph, start) function)
 # When I asked the question 
 # 'I want to calculate the shortest path in a graph representing distances between nodes.'
 
