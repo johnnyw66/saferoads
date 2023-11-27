@@ -111,10 +111,9 @@ class CombinedCost():
         return f"distance {self.distance} safety {self.safety}"
 
 def normalise(value, max_value):
-    return value
-#    return value/(max_value + (0.0000001 if max_value == 0 else 0))
+    return value/(max_value + (0.0000001 if max_value == 0 else 0))
 
-def dijkstra(graph, start, morality):
+def dijkstra(graph, start, morality, max_safety = 1, max_distance = 1):
     # Initialize distances and predecessors
     costs = {node: float('infinity') for node in graph}
     costs[start] = 0
@@ -131,7 +130,7 @@ def dijkstra(graph, start, morality):
             continue
 
         for neighbor, weight in graph[current_node].items():
-            cost = current_cost + (1-morality)*weight.distance + morality*weight.safety
+            cost = current_cost + (1-morality)*normalis(weight.distance, max_distance) + morality*normalise(weight.safety, max_safety)
 
             # Check if the new distance is smaller than the known cost
             if cost < costs[neighbor]:
