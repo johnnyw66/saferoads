@@ -75,9 +75,67 @@ def normalise(value, max_value):
 The small fractional value is to make sure - we don't divide by zero - but should not be needed if choose appropriare safe values and don't have 0 distances between nodes.
 
 
+
+
+
+
 ## Flaws with this design
 
 Travelling shortest distance is not always being selfish! It is good for the environment.
 
+
+
+
+```
+import sys
+
+def normalise(value, max_value):
+    return value/(max_value + 0.0000001)
+
+
+# WARNING ! THIS IS AN AMMENDED COPY OF SOURCE FROM CHAT GPT
+# (dijkstra(graph, start) function)
+# When I asked the question 
+# 'I want to calculate the shortest path in a graph representing distances between nodes.'
+
+
+# TODO We need to find all possible routes from start to endpt and find the maxium distance and safety values
+
+def dijkstra_combined(combined_graph, start, endpt, max_distance, max_safety):
+    # Number of nodes in the graph
+    num_nodes = len(combined_graph)
+
+    # Initialize distances and visited nodes
+    costs = [sys.maxsize] * num_nodes
+    visited = [False] * num_nodes
+
+    # The distance from the start node to itself is 0
+    costs[start] = 0
+
+    for _ in range(num_nodes):
+        # Find the unvisited node with the smallest tentative distance
+        min_costs = sys.maxsize
+        min_index = -1
+
+        for i in range(num_nodes):
+            if not visited[i] and costs[i] < min_costs:
+                min_costs = costs[i]
+                min_index = i
+
+        # Mark the selected node as visited
+        visited[min_index] = True
+
+        # Update costs for the neighbors of the selected node
+        for i in range(num_nodes):
+            if not visited[i] and combined_graph[min_index][i] != None:
+                new_cost = costs[min_index] + (morality)*normalise(combined_graph[min_index][i].distance, max_distance)
+                    + (1-morality)*normalise(combined_graph[min_index][i].safety, max_safety )
+                if new_distance < distances[i]:
+                    costs[i] = new_cost
+
+    return distances[endpt]
+
+
+```
 
 
