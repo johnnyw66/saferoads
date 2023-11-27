@@ -13,6 +13,7 @@ Combined costing graph - combined cost with two values distance and safety. - us
 ```
 
 SAFETY_SET = {1, 2, 3, 4} # Useful for asserting that our safety values are within our defined range
+# 1 is the most safe, 4 is the least safe
 
 class CombinedCost:
 
@@ -154,10 +155,10 @@ def shortest_path(predecessors, destination):
 
 # Example graph represented as an adjacency dictionary
 graph = {
-    'A': {'B': CombinedCost(1, 0.1), 'C': CombinedCost(4, 0.2)},
-    'B': {'A': CombinedCost(1, 4.0), 'C': CombinedCost(2), 'D': CombinedCost(5, 1.0)},
-    'C': {'A': CombinedCost(4, 1.0), 'B': CombinedCost(2, 1.5), 'D': CombinedCost(1, 3.0)},
-    'D': {'B': CombinedCost(5, 6.10), 'C': CombinedCost(1, 2.0)}
+    'A': {'B': CombinedCost(1, 1), 'C': CombinedCost(4, 2)},
+    'B': {'A': CombinedCost(1, 4.0), 'C': CombinedCost(2), 'D': CombinedCost(5, 1.},
+    'C': {'A': CombinedCost(4, 1), 'B': CombinedCost(2, 2), 'D': CombinedCost(1, 3)},
+    'D': {'B': CombinedCost(5, 4), 'C': CombinedCost(1, 2)}
 }
 
 start_node = 'A'
