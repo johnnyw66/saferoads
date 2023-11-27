@@ -130,7 +130,8 @@ def dijkstra(graph, start, morality, max_safety = 1, max_distance = 1):
             continue
 
         for neighbor, weight in graph[current_node].items():
-            cost = current_cost + (1-morality)*normalis(weight.distance, max_distance) + morality*normalise(weight.safety, max_safety)
+            cost = current_cost + (1-morality)*normalise(weight.distance, max_distance) + \
+                          morality*normalise(weight.safety, max_safety)
 
             # Check if the new distance is smaller than the known cost
             if cost < costs[neighbor]:
