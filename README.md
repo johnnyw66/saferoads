@@ -42,7 +42,7 @@ Combined cost (considering distance and safety) of travelling between nodes **n1
 
 ```
             # weight is a CombinedCost object
-            costing =  (1-morality)*normalise(weight.distance, max_distance) + morality*normalise(weight.safety, max_safety)
+            costing =  (1-m)*normalise(weight.distance, max_distance) + m*normalise(weight.safety, max_safety)
 
 
  ```
