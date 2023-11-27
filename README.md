@@ -48,11 +48,13 @@ cost() = (1 - m) * normalise(combined_graph[].distance, max_distance_from_start_
 **m** is a 'float' value between 0 and 1
 
 0 - meaning take a selfish attitude and find the shortest (distance) route - (giving no consideration to safety).
+
 1 - meaning a selfless attitude - consider only safest route only.
 
 Example of other values -
 
 m = 0.25 means we are giving 3 times more consideration to minimising travelling distance than to safety.
+
 m = 0.75 means we are 3 times more consideration to safety than minimising distance.
 
 
