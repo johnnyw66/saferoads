@@ -101,7 +101,7 @@ def normalise(value, max_value):
 
 # TODO We need to find all possible routes from start to endpt and find the maxium distance and safety values
 
-def dijkstra_combined(combined_graph, start, endpt, max_distance, max_safety):
+def dijkstra_combined(combined_graph, morality, start, endpt, max_distance, max_safety):
     # Number of nodes in the graph
     num_nodes = len(combined_graph)
 
