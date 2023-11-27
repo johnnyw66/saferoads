@@ -40,9 +40,11 @@ combined_graph = [
 
 Combined cost (considering distance and safety) of travelling between nodes **n1** and **n2** 
 
+```
 cost() = (1 - m) * normalise(combined_graph[].distance, max_distance_from_start_to_end_point)   
     + m * normalise(combined_graph[].safety, max_safety_from_start_to_end_point)
- 
+ ```
+
 **m** is a 'float' value between 0 and 1
 
 0 - meaning take a selfish attitude and find the shortest (distance) route - (giving no consideration to safety).
