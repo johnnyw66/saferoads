@@ -94,13 +94,15 @@ import sys
 
 from heapq import heappush, heappop
 
-# WARNING ! THIS IS AN AMMENDED COPY OF SOURCE FROM CHAT GPT
+# WARNING ! THIS IS AN AMENDED COPY OF SOURCE FROM CHAT GPT
 # When I asked the question 
 # 'I want to calculate the shortest path in a graph representing distances between nodes.'
+# I modified the code to give an alternative combined cost calculation - giving consideration to safety and distance.
 
 
 # TODO We need to find all possible routes from start to endpt and find the maxium distance and safety values
-
+#find_max_safe_value(grap,'A','D')
+#find_max_distance_value(grap,'A','D')
 
 SAFETY_SET = {1, 2, 3, 4} # Useful for asserting that our safety values are within our defined range
 # 1 is the most safe, 4 is the least safe
@@ -165,10 +167,17 @@ graph = {
     'D': {'B': CombinedCost(5, 4), 'C': CombinedCost(1, 2)}
 }
 
+# Example code which minimises cost (giving consideration to safety and distance travelled)
+# Two functions find_max_safe_value() and find_max_distance_value() have to implemented
 start_node = 'A'
 end_node = 'D'
 
-distances, predecessors = dijkstra(graph, start_node, 0)
+morality = 0.25  # Give 3 times more weight to minimising distance (value of 0.75 would give 3 times more weight to safe route)
+
+max_safe_value = find_max_safe_value(graph, start_node, end_node)   # From all possible routes from 'A' to 'D' work out a denominator for normalising safe values
+max_distance_value = find_max_distance_value(graph, start_node, end_node)  # From all possible routes from 'A' to 'D' work out a denominator for normalising safe values
+ 
+distances, predecessors = dijkstra(graph, start_node, morality, max_safety=max_safe_value, max_distance=max_distance_value)
 shortest_path_route = shortest_path(predecessors, end_node)
 
 print(f"Shortest distances: {distances}")
