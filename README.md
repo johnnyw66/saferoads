@@ -163,7 +163,7 @@ def shortest_path(predecessors, destination):
 # Example graph represented as an adjacency dictionary
 graph = {
     'A': {'B': CombinedCost(1, 1), 'C': CombinedCost(4, 2)},
-    'B': {'A': CombinedCost(1, 4.0), 'C': CombinedCost(2), 'D': CombinedCost(5, 1.},
+    'B': {'A': CombinedCost(1, 4), 'C': CombinedCost(2, 4), 'D': CombinedCost(5, 1)},
     'C': {'A': CombinedCost(4, 1), 'B': CombinedCost(2, 2), 'D': CombinedCost(1, 3)},
     'D': {'B': CombinedCost(5, 4), 'C': CombinedCost(1, 2)}
 }
@@ -181,17 +181,16 @@ end_node = 'D'
 # max_safe_value = find_max_safe_value(graph, start_node, end_node)   # From all possible routes from 'start_node' to 'end_node' work out a denominator for normalising safe values
 # max_distance_value = find_max_distance_value(graph, start_node, end_node)  # From all possible routes from 'start_node' to 'end_node' work out a denominator for normalising safe values
 #
+morality = 0            
+max_safe_value = 1     # Fudge
+max_distance_value = 1 # Fudge
 
-max_safe_value = 1
-max_distance_value = 1
-morality = 0
-
-  
 distances, predecessors = dijkstra(graph, start_node, morality, max_safety=max_safe_value, max_distance=max_distance_value)
 shortest_path_route = shortest_path(predecessors, end_node)
 
 print(f"Shortest distances: {distances}")
 print(f"Shortest path from {start_node} to {end_node}: {shortest_path_route}")
+
 
 
 
