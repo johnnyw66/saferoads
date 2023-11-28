@@ -98,11 +98,18 @@ from heapq import heappush, heappop
 # When I asked the question 
 # 'I want to calculate the shortest path in a graph representing distances between nodes.'
 
+
 # TODO We need to find all possible routes from start to endpt and find the maxium distance and safety values
+
+
+SAFETY_SET = {1, 2, 3, 4} # Useful for asserting that our safety values are within our defined range
+# 1 is the most safe, 4 is the least safe
 
 class CombinedCost():
 
     def __init__(self, distance, safety = 0):
+
+        assert safety in SAFETY_SET, "Bad Safety Value"
         self.distance = distance
         self.safety = safety
 
