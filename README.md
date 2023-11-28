@@ -88,6 +88,7 @@ Travelling shortest distance is not always being selfish! It is good for the env
 
 
 
+# Example Code Flow
 
 ```
 import sys
@@ -172,11 +173,14 @@ graph = {
 start_node = 'A'
 end_node = 'D'
 
-morality = 0.25  # Give 3 times more weight to minimising distance (value of 0.75 would give 3 times more weight to safe route)
+# morality = 0.25 gives 3 times more weight to minimising distance
+# morality = 0.75 gives 3 times more weight to safe route)
+# morality = 0 gives us shortest path (in terms of distance)
+# morality = 1 gives us safest path (no consideration given to minimising distance)
 
-max_safe_value = find_max_safe_value(graph, start_node, end_node)   # From all possible routes from 'A' to 'D' work out a denominator for normalising safe values
-max_distance_value = find_max_distance_value(graph, start_node, end_node)  # From all possible routes from 'A' to 'D' work out a denominator for normalising safe values
- 
+# max_safe_value = find_max_safe_value(graph, start_node, end_node)   # From all possible routes from 'start_node' to 'end_node' work out a denominator for normalising safe values
+# max_distance_value = find_max_distance_value(graph, start_node, end_node)  # From all possible routes from 'start_node' to 'end_node' work out a denominator for normalising safe values
+#  
 distances, predecessors = dijkstra(graph, start_node, morality, max_safety=max_safe_value, max_distance=max_distance_value)
 shortest_path_route = shortest_path(predecessors, end_node)
 
