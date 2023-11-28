@@ -180,7 +180,13 @@ end_node = 'D'
 
 # max_safe_value = find_max_safe_value(graph, start_node, end_node)   # From all possible routes from 'start_node' to 'end_node' work out a denominator for normalising safe values
 # max_distance_value = find_max_distance_value(graph, start_node, end_node)  # From all possible routes from 'start_node' to 'end_node' work out a denominator for normalising safe values
-#  
+#
+
+max_safe_value = 1
+max_distance_value = 1
+morality = 0
+
+  
 distances, predecessors = dijkstra(graph, start_node, morality, max_safety=max_safe_value, max_distance=max_distance_value)
 shortest_path_route = shortest_path(predecessors, end_node)
 
