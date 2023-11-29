@@ -201,14 +201,14 @@ print(f"Shortest path from {start_node} to {end_node}: {shortest_path_route}")
 
 Considering 'best route' to take from Town 'A' to Town 'D' - using a graph with combined costings in terms of safety and distance
 
-Work out all possible routes from 'A' to 'D' use DFS (with each total 'cost' in terms of just distance) - find the maxium value from this set - call this 'max_distance_value'
+Work out all possible routes from 'A' to 'D' use DFS (with each total 'cost' in terms of just distance) - find the maximum value from this set - call this 'max_distance_value'
 
-Work out all possible routes from 'A' to 'D' use DFS (with each total 'cost' in terms of just safety) - find the maxium value from this set - call this 'max_safety_value'
+Work out all possible routes from 'A' to 'D' use DFS (with each total 'cost' in terms of just safety) - find the maximum value from this set - call this 'max_safety_value'
 (DFS - Depth-First Search)
 
 Decide on a morality value - 'morality' to use with the costing calculation
 
-Use dijkstra with the costing graph - morality value, start and end nodes (Town 'A', Town 'D')
+Use dijkstra with the costing graph - morality value, start and end nodes and the two max values (Town 'A', Town 'D')
 
 
 
