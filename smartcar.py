@@ -106,7 +106,7 @@ graph = {
 }
 
 # Example code which minimises cost (giving consideration to safety and distance travelled)
-# Two functions find_max_safe_value() and find_max_distance_value() have to implemented
+
 start_node = 'A'
 end_node = 'D'
 
