@@ -7,11 +7,6 @@ from heapq import heappush, heappop
 # 'I want to calculate the shortest path in a graph representing distances between nodes.'
 # I modified the code to give an alternative combined cost calculation - giving consideration to safety and distance.
 
-
-# TODO We need to find all possible routes from start to endpt and find the maxium distance and safety values
-#find_max_safe_value(grap,'A','D')
-#find_max_distance_value(grap,'A','D')
-
 SAFETY_SET = {1, 2, 3, 4} # Useful for asserting that our safety values are within our defined range
 # 1 is the most safe, 4 is the least safe
 
