@@ -2,7 +2,7 @@ import sys
 
 from heapq import heappush, heappop
 
-# WARNING ! THIS IS AN AMENDED COPY OF SOURCE FROM CHAT GPT
+# WARNING ! THE dijkstra FUNCTION IS AN AMENDED COPY OF SOURCE FROM CHAT GPT
 # When I asked the question 
 # 'I want to calculate the shortest path in a graph representing distances between nodes.'
 # I modified the code to give an alternative combined cost calculation - giving consideration to safety and distance.
@@ -67,6 +67,36 @@ def shortest_path(predecessors, destination):
 
     return path
 
+def dfs(cost_type, graph, start, end, path=[], cost=0):
+# build up a list of all paths from start to end nodes - with their total costs
+	
+    path = path + [(start, cost)]
+
+    if start == end:
+        return [path]
+
+    if start not in graph:
+        return []
+
+    paths = []
+    for neighbor, edge_cost in graph[start].items():
+        if neighbor not in [node for node, _ in path]:
+            new_paths = dfs(cost_type, graph, neighbor, end, path, cost + (edge_cost.distance if cost_type else edge_cost.safety))
+            for p in new_paths:
+                paths.append(p)
+
+    return paths
+
+
+def calculate_max_safety_value(graph, start_node, end_node):
+	""" From all possible routes from 'start_node' to 'end_node' work out a denominator for normalising safe values """
+	return  max([path[-1][1] for path in dfs(False, graph, start_node, end_node)])
+
+def calculate_max_distance_value(graph, start_node, end_node):
+	""" From all possible routes from 'start_node' to 'end_node' work out a denominator for normalising distance values """
+	return  max([path[-1][1] for path in dfs(True, graph, start_node, end_node)])
+
+
 # Example graph represented as an adjacency dictionary
 graph = {
     'A': {'B': CombinedCost(1, 1), 'C': CombinedCost(4, 2)},
@@ -85,16 +115,17 @@ end_node = 'D'
 # morality = 0 gives us shortest path (in terms of distance)
 # morality = 1 gives us safest path (no consideration given to minimising distance)
 
-# max_safe_value = find_max_safe_value(graph, start_node, end_node)   # From all possible routes from 'start_node' to 'end_node' work out a denominator for normalising safe values
-# max_distance_value = find_max_distance_value(graph, start_node, end_node)  # From all possible routes from 'start_node' to 'end_node' work out a denominator for normalising safe values
+# max_safe_value = calculate_max_safe_value(graph, start_node, end_node)   # From all possible routes from 'start_node' to 'end_node' work out a denominator for normalising safe values
+# max_distance_value = calculate_max_distance_value(graph, start_node, end_node)  # From all possible routes from 'start_node' to 'end_node' work out a denominator for normalising distance values
 #
-morality = 0            
-max_safe_value = 1     # Fudge
-max_distance_value = 1 # Fudge
+
+morality = 1            
+max_safe_value = calculate_max_safety_value(graph, start_node, end_node)
+max_distance_value = calculate_max_safety_value(graph, start_node, end_node)
 
 distances, predecessors = dijkstra(graph, start_node, morality, max_safety=max_safe_value, max_distance=max_distance_value)
 shortest_path_route = shortest_path(predecessors, end_node)
 
-print(f"Shortest distances: {distances}")
-print(f"Shortest path from {start_node} to {end_node}: {shortest_path_route}")
+print(f"Normalise Combined minimal costs {distances}")
+print(f"Minimum cost from {start_node} to {end_node}: {shortest_path_route} morality {morality} max_distance_value {max_distance_value} max_safe_value {max_safe_value}")
 
